@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="slider">
+  <slider min='1' max='60' show-value bindchange='sliderChange' activeColor="#008C8C" value="{{time}}"></slider>
+</view>
+
+
+<view class="task_text">
+  <view class="task_title">选择一个任务</view>
+  <view class="task_desc">在{{time}}分钟内，专注做这件事</view>
+</view>
+
+<view class="task_cate">
+  <view wx:for="{{cateArr}}" wx:key = "cate" class="cate_item" bindtap="clickIcon" data-index="{{index}}">
+    <view class="cate_icon"><image src="../../images/{{item.icon}}.png"></image></view>
+    <!-- 判断是否选中 通过下标的方式-->
+    <view class="cate_text {{index == iconActive?'cate_text_active':''}}">{{item.text}}</view>
+  </view>
+</view>
+
+<view class="start">
+  开始专注
+</view>
