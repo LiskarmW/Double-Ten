@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/focusOnRecord/focusOnRecord"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -9,6 +10,26 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+
+  "tabBar": {
+    "selectedColor": "#008C8C",
+    "color": "#999999",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "番茄钟",
+        "iconPath": "./images/tomato.png",
+        "selectedIconPath": "./images/selectTomato.png"
+      },
+      {
+        "pagePath": "pages/focusOnRecord/focusOnRecord",
+        "text":"专注记录"
+      }
+    ]
+  },
+
   "style": "v2",
   "sitemapLocation": "sitemap.json"
+
+
 }
