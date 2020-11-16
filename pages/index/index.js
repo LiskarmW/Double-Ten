@@ -6,11 +6,15 @@ Page({
   data: {
     clockShow: false, //选择页与倒计时页切换显示
     time: '25', //初始番茄钟默认时间
-    mTime: 25 * 60 * 1000,
-    timeStr: '25:00',
+    mTime: 25 * 60 * 1000,// 倒计时时间转为 ms 的值
+    timeStr: '25:00',// 倒计时事件字符串
     iconActive: '-1', //默认不选择事件
-    rate: '',
+    rate: '',// rpx与px的比值
     clockHeight: 0,
+    okShow:false,// 完成按钮是否显示
+    pauseShow:true,// 暂停按钮是否显示
+    continueCancleShow:false,// 继续和放弃按钮是否显示
+    timer:null, // 计时器
     cateArr: [{
         icon: 'work',
         text: '工作'
@@ -58,9 +62,18 @@ Page({
   },
   clickIcon: function name(params) {
     // console.log(params);
+    var iconActive = params.currentTarget.dataset.index;
     this.setData({
-      iconActive: params.currentTarget.dataset.index
+      iconActive: iconActive
     })
+    // 选定某件事时，自动设定时间值
+    if(iconActive == 2)
+    {
+    //console.log(iconActive);
+      this.setData({
+        time:5,
+      })
+    }
   },
   start: function name(params) {
     this.setData({
@@ -131,9 +144,59 @@ Page({
         //时间文本设为 0
         _this.setData({
           timeStr:"00:00",
+          // 计时完成
+          okShow:true,
+          pauseShow:false,
         })
       }
     }, 100);
-
+    _this.setData({
+      timer:timer,
+    })
   },
+  // 计时完成
+  ok:function name(params) {
+    clearInterval(this.data.timer);
+    this.setData({
+      pauseShow:true,
+      okShow:false,
+      continueCancleShow:false,
+      clockShow:false,
+    })
+  },
+  // 计时停止
+  pause:function name(params) {
+    // 首先清除原有的计时器
+    clearInterval(this.data.timer);
+    // 隐藏计时按钮，显示继续和放弃按钮
+    this.setData({
+      pauseShow:false,
+      continueCancleShow:true,
+      okShow:false,
+    })
+  },
+  // 计时继续
+  continue:function name(params) {
+    // 隐藏继续和放弃按钮，显示暂停按钮
+    this.setData({
+      pauseShow:true,
+      continueCancleShow:false,
+      okShow:false,
+    })
+    // 启动计时器，继续倒计时
+    this.drawActive();
+  },
+  // 放弃计时
+  cancle:function name(params) {
+    // 首先清除计时器
+    clearInterval(this.data.timer);
+    // 恢复按钮显示关系的初始值，保证下次进入的时候按钮显示正常
+    this.setData({
+      pauseShow:true,
+      continueCancleShow:false,
+      okShow:false,
+      clockShow:false
+    })
+
+  }
 })

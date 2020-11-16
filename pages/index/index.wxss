@@ -105,3 +105,15 @@ page {
   top: 170rpx;
   text-align: center;
 }
+
+/* 完成 暂停 放弃按钮的样式 */
+.btns .okBtn, .btns .pauseBtn, .btns .continueBtn,.btns .cancleBtn{
+  width: 280rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: white;
+  border-radius: 50rpx;
+  margin: 0 auto 20rpx auto;
+  border: 3rpx solid white;
+} 
