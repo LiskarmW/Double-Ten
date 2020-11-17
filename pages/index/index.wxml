@@ -23,10 +23,15 @@
   开始专注
 </view>
 
+<!-- 跳转到专注记录 -->
+<view class="record" bindtap="record">
+  专注记录
+</view>
+
 </view>
 
 <!-- 时钟页面,使用计算出来的 rate 来计算高度 -->
-<view class="clock" hidden="{{!clockShow}}" style="height:{{clockHeight}}rpx">\
+<view class="clock" hidden="{{!clockShow}}" style="height:{{clockHeight}}rpx">
 
   <view class="progress">
     <canvas canvas-id="progress_bg" class="progress_bg"></canvas>

@@ -1,6 +1,4 @@
-page {
-  
-}
+
 
 .slider {
   width: 650rpx;
@@ -60,6 +58,18 @@ page {
 }
 
 .start {
+  margin: 40rpx auto;
+  width: 280rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: white;
+  background-color: #008C8C;
+  border-radius: 50rpx;
+  border: 2rpx solid #008C8C;
+}
+
+.record {
   margin: 40rpx auto;
   width: 280rpx;
   height: 90rpx;

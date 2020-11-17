@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const util = require('../../utils/util.js')
 Page({
   data: {
     clockShow: false, //选择页与倒计时页切换显示
@@ -86,6 +86,13 @@ Page({
     this.drawBg();
     this.drawActive();
   },
+  // 跳转至记录页面
+  record:function name(params) {
+    wx.navigateTo({
+      url: '/pages/records/records',
+    })
+  },
+
   // 画黑色背景圆
   drawBg: function name(params) {
     //rpx 转化为 px
@@ -139,6 +146,16 @@ Page({
         ctx.stroke();
         ctx.draw();
       } else {
+        // 记录倒计时结束的数据
+        var records = wx.getStorageSync('records') || [];
+        records.unshift({
+          date:util.formatTime(new Date),
+          // 事件类型
+          cate:_this.data.iconActive,
+          // 倒计时时长
+          time:_this.data.time
+        });
+        wx.setStorageSync('records',records);
         // 清空计时器 timer
         clearInterval(timer);
         //时间文本设为 0
